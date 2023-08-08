@@ -1,0 +1,28 @@
+<div class="container mt-5">
+
+
+<div class="container mt-5">
+  <div class="text-center">
+    <h2>Crée un événement !</h2>
+    <p class="lead">Balance ton événement via le formulaire ci-dessous</p>
+    <%= link_to "Créer un nouvel événement", new_event_path, class: "btn btn-primary" %>
+  </div>
+
+<div class="container mt-5">
+
+  <div class="row">
+    <% @events.each_with_index do |event, index| %>
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title"><%= link_to event.title, event_path(event) %></h5>
+            <p class="card-text"><%= event.description %></p>
+            <p class="card-text"><strong>Date:</strong> <%= event.start_date.strftime('%B %d, %Y') %></p>
+            <p class="card-text"><strong>Lieu:</strong> <%= event.location %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+

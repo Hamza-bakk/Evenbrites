@@ -1,8 +1,8 @@
 class Event < ActiveRecord::Base
     belongs_to :administrator, class_name: "User"
   
-    has_many :participations, dependent: :destroy
-    has_many :participants, through: :participations, source: :user
+    has_many :attendances, dependent: :destroy 
+    has_many :users, through: :attendances 
   
     validates :start_date, presence: true
     validates :duration, presence: true, numericality: { greater_than: 0, only_integer: true, divisible_by: 5 }
@@ -16,5 +16,18 @@ class Event < ActiveRecord::Base
     def start_date_cannot_be_in_the_past
       errors.add(:start_date, "Elle ne peut pas être au passé") if start_date.present? && start_date < Time.zone.now
     end
+
+    def end_date
+      start_date + (duration * 60)
+    end
+
+    def nombre_inscrit
+      attendances.count
+    end
+
+    def mail_organisateur
+      administrator.email
+    end
+
   end
   

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Votre titre ici</title>
+  <!-- Liens vers les fichiers CSS Bootstrap et autres ressources ici -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+  <header class="p-3 bg-dark text-white">
+    <div class="container">
+      <!-- Contenu de l'en-tête avec Bootstrap ici -->
+    </div>
+  </header>
+
+  <div class="container mt-5">
+    <h1>Bienvenue sur la page Eventbrite locale</h1>
+    <p>Vous trouverez les événements qui pourraient vous intéresser :</p>
+    <ul class="list-group">
+      <% if user_signed_in? %>
+        <li class="list-group-item">
+          <%= link_to "Sign out", destroy_user_session_path, method: :delete, data: {turbo_method: :delete}, class: "btn btn-danger" %>
+        </li>
+
+        <li class="list-group-item">
+          Voici ton email : <%= current_user.email %>
+        </li>
+
+        <li class="list-group-item">
+          <%= link_to "Secret page", static_pages_secret_path, class: "btn btn-primary" %>
+        </li>
+
+        <li class="list-group-item">
+          <%= link_to "Edit email / password", edit_user_registration_path, class: "btn btn-secondary" %>
+        </li>
+
+      <% else %>
+        <li class="list-group-item">
+          <%= link_to "Sign in", new_user_session_path, class: "btn btn-primary" %>
+        </li>
+
+        <li class="list-group-item">
+          <%= link_to "Sign up", new_user_registration_path, class: "btn btn-success" %>
+        </li>
+
+      <% end %>
+    </ul>
+  </div>
+
+  <!-- Scripts Bootstrap et autres scripts ici -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></script>
+</body>
+</html>
