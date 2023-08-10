@@ -75,6 +75,8 @@ end
 
   gem "letter_opener", group: :development
 
-  gem 'dotenv-rails'
+  gem 'dotenv-rails', groups: [:development, :test]
 
 gem "devise", "~> 4.9"
+
+gem "stripe", "~> 8.6"

@@ -26,7 +26,7 @@ class EventsController < ApplicationController
             
             redirect_to @event
         else
-            #puts @event.errors.full_messages
+            puts @event.errors.full_messages
             render :new
         end
     end
